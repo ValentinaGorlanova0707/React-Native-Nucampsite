@@ -4,7 +4,7 @@ import { baseUrl } from '../../shared/baseUrl';
 
 const RenderCampsite = (props) => {
     const { campsite } = props;
-
+    console.log(props.isFavorite);
     if (campsite) {
         return (
             <Card containerStyle={styles.cardContainer}>
@@ -28,11 +28,7 @@ const RenderCampsite = (props) => {
                 type='font-awesome' 
                 color='#f50'
                 raiset reverse
-                onPress={() =>
-                    props.isFavorite
-                        ? console.log('Already set as a favorite')
-                        : props.markFavorite()
-                }/>
+                onPress={() => props.markFavorite()}/>
             </Card>
         )
     }

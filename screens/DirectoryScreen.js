@@ -1,12 +1,24 @@
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { CAMPSITES } from '../shared/campsites';
-import { FlatList } from 'react-native';
+import { Text, Viev, FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
+import Loading from '../components/LoadingComponent';
 
 const DirectoryScreen = ({navigation}) => {
     const campsites = useSelector((state) => state.campsites);
 
+    if (campsites.isLoading) {
+        return <Loading />;
+    }
+
+    if (campsites.errMess) {
+        return (
+            <View>
+                <Text>{campsites.errMess}</Text>
+            </View>
+        );
+    }
+    
     const renderDirectoryItem = ({item : campsite}) => {
         return(
             <Tile
